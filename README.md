@@ -249,36 +249,38 @@ Pada tugas ini, akan dilakukan implementasi dari elemen-elemen dasar Flutter.
 <summary><b>Mengimplementasikan warna-warna yang berbeda untuk setiap tombol</b></summary>
 
 Untuk mengimplementasikan ini, di berkas `menu.dart`, saya menambahkan atribut `color` pada class `ItemHomepage`, menambakan color untuk setiap tombol, dan menggunakan item.color sebagai color yang akan digunakan untuk membuat tombol. Sehingga, setiap tombol nantinya akan menampilkan warna yang sesuai dengan warna yang mereka miliki. 
-    ```dart
-    class MyHomePage extends StatelessWidget {
-        ...
-        final List<ItemHomepage> items = [
-            ItemHomepage("Lihat Daftar Produk", Icons.shopping_cart, Colors.yellow.shade400),
-            ItemHomepage("Tambah Produk", Icons.add, Colors.green.shade400),
-            ItemHomepage("Logout", Icons.logout, Colors.red.shade800),
-        ];
-        ...
-    }
-    ...
-    class ItemHomepage {
-        final String name;
-        final IconData icon;
-        final Color color; // bagian ini
 
-        ItemHomepage(this.name, this.icon, this.color);
+```dart
+class MyHomePage extends StatelessWidget {
+    ...
+    final List<ItemHomepage> items = [
+        ItemHomepage("Lihat Daftar Produk", Icons.shopping_cart, Colors.yellow.shade400),
+        ItemHomepage("Tambah Produk", Icons.add, Colors.green.shade400),
+        ItemHomepage("Logout", Icons.logout, Colors.red.shade800),
+    ];
+    ...
+}
+...
+class ItemHomepage {
+    final String name;
+    final IconData icon;
+    final Color color; // bagian ini
+
+    ItemHomepage(this.name, this.icon, this.color);
+}
+
+class ItemCard extends StatelessWidget {
+    ...
+    @override
+    Widget build(BuildContext context) {
+        return Material(
+            color: item.color, // bagian ini
+            ...
+        )
     }
-    
-    class ItemCard extends StatelessWidget {
-        ...
-        @override
-        Widget build(BuildContext context) {
-            return Material(
-                color: item.color, // bagian ini
-                ...
-            )
-        }
-    }
-    ```
+}
+```
+
 </details>
 
 <details>
@@ -286,27 +288,28 @@ Untuk mengimplementasikan ini, di berkas `menu.dart`, saya menambahkan atribut `
 
 Fungsionalitas ini didefinisikan pada widget `ItemCard` yang mendefinisikan setiap tombol pada aplikasi. Pada child dari `Material` yang di-return dari fungsi Widget, didefinisikan properti `onTap` yang akan memunculkan Snackbar ketika tombol ditekan. 
 
-    ```dart
-    class ItemCard extends StatelessWidget {
-        ...
-        @override
-        Widget build(BuildContext context) {
-            return Material(
+```dart
+class ItemCard extends StatelessWidget {
+    ...
+    @override
+    Widget build(BuildContext context) {
+        return Material(
+            ...
+            child: InkWell(
+                onTap: () {
+                    ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                            SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
+                        );
+                },
                 ...
-                child: InkWell(
-                    onTap: () {
-                        ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(
-                                SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-                            );
-                    },
-                    ...
-                )
             )
-        }
+        )
     }
-    ```
+}
+```
+
 </details>
 
 ### Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.

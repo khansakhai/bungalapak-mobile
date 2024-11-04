@@ -313,12 +313,28 @@ class ItemCard extends StatelessWidget {
 </details>
 
 ### Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
-
+Dalam Flutter, terdapat dua jenis widget utama, yaitu Stateless dan Stateful. Stateless widget merupakan widget yang bersifat statis, di mana widget ini tidak memerlukan pengelolaan state (keadaan), artinya, widget tidak berubah setelah dibuat. Contohnya, seperti icon dan text yang tidak berubah. Sedangkan, Stateful widget merupakan widget yang bersifat dinamis, di mana widget ini dapat mengubah state selama masa pakainya, artinya, widget ini dapat diperbarui kapan pun berdasarkan *user actions* atau ketika terjadi perubahan data. Contohnya, seperti checkbox yang memungkinkan pengguna untuk menandai atau menghilangkan tanda dari sebuah item. 
 
 ### Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya
-
+- `MaterialApp` : 
+- `Scaffold` : 
+- `AppBar` : 
+- `Padding` : 
+- `Column` : 
+- `Row` : 
+- `SizedBox` : 
+- `Text` : 
+- `GridView.count` : 
+- `Card` : 
+- `Container` : 
+- `Icon` : 
+- `Material` : 
+- `InkWell` : 
+- `SnackBar` : 
+- `TextStyle` : 
 
 ### Apa fungsi dari `setState()`? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
+Dalam Flutter, `setState()` digunakan untuk memperbarui atau memodifikasi nilai dari state dalam `StatefulWidget`. Fungsi ini memberi tahu FLutter bahwa data telah berubah dan UI perlu di-render ulang untuk menampilkan perubahan tersebut. Variabel yang terdampak oleh pemanggilan `setState()` adalah variabel state lokal yang nilainya diubah dalam blok `setState()`. Hal ini mencakup segala variabel yang terlibat langsung dalam pembentukan output UI, seperti nilai counter, status checkbox, atau string yang ditampilkan. Perubahan pada variabel-variabel ini memastikan bahwa UI terupdate sesuai dengan data terkini. 
 
-
-### Jelaskan perbedaan antara const dengan `final`.
+### Jelaskan perbedaan antara `const` dengan `final`.
+Dalam pemrograman `Dart`, `const` dan `final` digunakan untuk mendeklarasikan variabel yang nilainya tidak dapat diubah setelah diinisialisasi. Variabel `final` hanya dapat diinisialisasi sekali dan tidak harus diinisialisasi saat dideklarasi. Artinya, nilai dari variabel ini dapat ditentukan saat program sudah berjalan, yang berarti nilai ini dapat diambil dari hasil komputasi atau kondisi yang baru diketahui selama program dijalankan. Sedangkan, variabel `const` harus diinisialisasi dengan nilai konstan yang diketahui pada waktu kompilasi dan tidak dapat diubah setelahnya. Artinya, nilai harus sudah jelas dan tidak berubah sebelum kode dijalankan.

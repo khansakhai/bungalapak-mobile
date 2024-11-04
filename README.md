@@ -316,22 +316,22 @@ class ItemCard extends StatelessWidget {
 Dalam Flutter, terdapat dua jenis widget utama, yaitu Stateless dan Stateful. Stateless widget merupakan widget yang bersifat statis, di mana widget ini tidak memerlukan pengelolaan state (keadaan), artinya, widget tidak berubah setelah dibuat. Contohnya, seperti icon dan text yang tidak berubah. Sedangkan, Stateful widget merupakan widget yang bersifat dinamis, di mana widget ini dapat mengubah state selama masa pakainya, artinya, widget ini dapat diperbarui kapan pun berdasarkan *user actions* atau ketika terjadi perubahan data. Contohnya, seperti checkbox yang memungkinkan pengguna untuk menandai atau menghilangkan tanda dari sebuah item. 
 
 ### Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya
-- `MaterialApp` : 
-- `Scaffold` : 
-- `AppBar` : 
-- `Padding` : 
-- `Column` : 
-- `Row` : 
-- `SizedBox` : 
-- `Text` : 
-- `GridView.count` : 
-- `Card` : 
-- `Container` : 
-- `Icon` : 
-- `Material` : 
-- `InkWell` : 
-- `SnackBar` : 
-- `TextStyle` : 
+- `MaterialApp` : Widget utama yang mewadahi widget lain pada aplikasi
+- `Scaffold` : Widget yang menyediakan struktur dasar untuk layar aplikasi (seperti kerangka)
+- `AppBar` : Widget yang mendefinisikan bar di bagian atas aplikasi
+- `Padding` : Memberikan padding/ruang kosong di sekitar child widget untuk memberikan ruang antar elemen dalam UI
+- `Column` : Mengatur child widget secara vertikal
+- `Row` : Mengatur child widget secara horizontal
+- `SizedBox` : Widget yang berupa box dan digunakan untuk memberikan ruang kosong
+- `Text` : Widget yang menampilkan string teks di UI
+- `GridView.count` : Widget untuk membuat grid dengan jumlah kolom yang tetap
+- `ItemCard` : Widget untuk mendefinisikan setiap tombol
+- `Container` : Widget untuk memodifikasi tampilan, seperti wanra, border, shadow, dll.
+- `Icon` : Widget yang menampilkan ikon untuk memberikan petunjuk visual
+- `Material` : Widget dasar yang mengimplementasikan efek visual
+- `InkWell` : Widget yang merespons sentuhan pada Material widget
+- `SnackBar` : Menampilkan pesan sementara di bagian bawah layar
+- `TextStyle` : Widget untuk menetukan styling pada elemen teks (widget teks), seperti font, ukuran, dll.
 
 ### Apa fungsi dari `setState()`? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
 Dalam Flutter, `setState()` digunakan untuk memperbarui atau memodifikasi nilai dari state dalam `StatefulWidget`. Fungsi ini memberi tahu FLutter bahwa data telah berubah dan UI perlu di-render ulang untuk menampilkan perubahan tersebut. Variabel yang terdampak oleh pemanggilan `setState()` adalah variabel state lokal yang nilainya diubah dalam blok `setState()`. Hal ini mencakup segala variabel yang terlibat langsung dalam pembentukan output UI, seperti nilai counter, status checkbox, atau string yang ditampilkan. Perubahan pada variabel-variabel ini memastikan bahwa UI terupdate sesuai dengan data terkini. 

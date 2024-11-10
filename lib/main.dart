@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bungalapak_mobile/menu.dart';
+import 'package:bungalapak_mobile/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bungalapak_mobile/screens/menu.dart';
 import 'package:bungalapak_mobile/screens/item_form.dart';
+import 'package:bungalapak_mobile/screens/list_item.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -57,6 +58,17 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const ItemFormPage()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Item'),
+            onTap: () {
+              // Route menu ke halaman item
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ItemPage ()),
               );
             },
           ),

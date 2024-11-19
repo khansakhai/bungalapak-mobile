@@ -393,3 +393,50 @@ Navigasi dalam aplikasi saya diatur menggunakan `Navigator` untuk berpindah anta
 - `Navigator.push()` : digunakan untuk menambahkan halaman baru ke tumpukan navigasi
 - `Navigator.pushReplacement()` : digunakan dari `LeftDrawer` untuk beralih ke halaman seperti `MyHomePage` atau `ItemFormPage` dengan menggantikan halaman saat ini dan tanpa menyimpannya di stack navigasi. 
 - `Navigator.pop()` : digunakan untuk kembali ke halaman sebelumnya
+
+## Tugas 9
+Pada tugas ini, akan dilakukan implementasi dari integrasi layanan web Django dengan aplikasi Flutter.
+
+### Langkah Implementasi Checklist
+
+<details>
+<summary><b>Memastikan deployment proyek tugas Django telah berjalan dengan baik</b></summary>
+</details>
+
+<details>
+<summary><b>Mengimplementasikan fitur registrasi akun pada proyek tugas Flutter</b></summary>
+</details>
+
+<details>
+<summary><b>Membuat halaman login pada proyek tugas Flutter</b></summary>
+</details>
+
+<details>
+<summary><b>Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter</b></summary>
+</details>
+
+<details>
+<summary><b>Membuat model kustom sesuai dengan proyek aplikasi Django</b></summary>
+</details>
+
+<details>
+<summary><b>Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah dideploy</b></summary>
+</details>
+
+<details>
+<summary><b>Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item.</b></summary>
+</details>
+
+<details>
+<summary><b>Melakukan filter pada halaman daftar item dengan hanya menampilkan item yang terasosiasi dengan pengguna yang login</b></summary>
+</details>
+
+### Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+
+### Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+### Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+
+### Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.

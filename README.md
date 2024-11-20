@@ -5,6 +5,7 @@ Proyek Flutter untuk tugas mata kuliah Pemrograman Berbasis Platform Ganjil 2024
 
 - [Tugas 7 - Elemen Dasar Flutter](#tugas-7)
 - [Tugas 8 - Flutter Navigation, Layouts, Forms, and Input Elements](#tugas-8)
+- [Tugas 9 - Integrasi Layanan Web Django dengan Aplikasi Flutter](#tugas-9)
 
 ---
 
@@ -401,42 +402,104 @@ Pada tugas ini, akan dilakukan implementasi dari integrasi layanan web Django de
 
 <details>
 <summary><b>Memastikan deployment proyek tugas Django telah berjalan dengan baik</b></summary>
-</details>
 
-<details>
-<summary><b>Mengimplementasikan fitur registrasi akun pada proyek tugas Flutter</b></summary>
-</details>
-
-<details>
-<summary><b>Membuat halaman login pada proyek tugas Flutter</b></summary>
+Deployment proyek tugas Django saya telah berjalan dengan baik dan dapat diakses melalui link berikut: [Bungalapak](http://khansa-khairunisa31-bungalapak.pbp.cs.ui.ac.id)
 </details>
 
 <details>
 <summary><b>Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter</b></summary>
+
+1. Pertama, saya membuat aplikasi Django baru bernama `authentication` dan menambahkannya ke dalam `INSTALLED_APPS` di berkas `settings.py`.
+2. Kemudian saya menjalankan perintah `pip install django-cors-headers` dan menambahkan `django-cors-headers` ke dalam `requirements.txt`, `corsheaders` ke `INSTALLED_APPS`, serta `corsheaders.middleware.CorsMiddleware` ke `MIDDLEWARE` di berkas `settings.py`.
+3. Masih dalam berkas yang sama, saya menambahkan `10.0.2.2` pada `ALLOWED_HOSTS` dan menambahkan kode berikut di main project.
+    ```python
+    ...
+    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOW_CREDENTIALS = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE = 'None'
+    SESSION_COOKIE_SAMESITE = 'None'
+    ...
+    ```
+4. Kemudian, pada folder `authentication`, saya membuat fungsi baru untuk register, login, dan logout di berkas `views.py`, dan membuat routingnya di `urls.py`.
+5. Saya juga menambahkan `path('auth/', include('authentication.urls')),` pada berkas `bungalapak/urls.py`.
+6. Saya meng-install package dengan menjalankan perintah berikut.
+    ```
+    flutter pub add provider
+    flutter pub add pbp_django_auth
+    ```
+
+    Kemudian, untuk menggunakan package tersebut, saya memodifikasi kode saya pada berkas `main.dart`.
+</details>
+
+<details>
+<summary><b>Membuat halaman login pada proyek tugas Flutter</b></summary>
+
+7. Saya membuat berkas baru untuk menampilkan halaman login bernama `login.dart` di direktori `lib/screens`. Karena terlalu panjang, kode dapat dilihat di [login.dart](./lib/screens/login.dart)
+8. Kemudian, pada file `main.dart`, pada Widget `MaterialApp(...)`, saya mengubah `home: MyHomePage()` menjadi `home: const LoginPage()`.
+</details>
+
+<details>
+<summary><b>Mengimplementasikan fitur registrasi akun pada proyek tugas Flutter</b></summary>
+
+9. Saya membuat berkas halaman register bernama `register.dart` pada direktori `lib/screens`. Karena terlalu panjang, kode dapat dilihat di [register.dart](./lib/screens/register.dart)
 </details>
 
 <details>
 <summary><b>Membuat model kustom sesuai dengan proyek aplikasi Django</b></summary>
+
+10. Untuk mengimplementasikan ini, saya membuat endpoint `JSON`, menyalin data yang ada ke situs web [Quicktype](http://app.quicktype.io/). Kemudian, saya mengcopy code dart yang di-generate oleh web tersebut.
+11. Setelah itu, saya membuat folder baru bernama `models/` dalam direktori `lib/` dan membuat berkas baru bernama `item.dart`, serta mengisi berkas tersebut dengan kode dart yang sudah saya dapatkan dari situs web Quicktype tadi. 
 </details>
 
 <details>
 <summary><b>Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah dideploy</b></summary>
+
+12. Saya membuat berkas bernama `list_item.dart` yang akan menampilkan halaman daftar item yang dimiliki oleh pengguna. Karena terlalu panjang, kode dapat dilihat di [list_item.dart](./lib/screens/list_item.dart)
 </details>
 
 <details>
 <summary><b>Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item.</b></summary>
+
+13. Fitur ini membuat item dapat diklik di daftar item dan akan mengarahkan pengguna ke halaman detail dari item tersebut. Untuk mengimplementasikannya, saya membuat routing berikut di bagian daftar item dalam berkas `list_item.dart`.
+    ```dart
+        onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) => ItemDetailPage(snapshot.data![index]),
+                ),
+            );
+        },
+    ```
+
+    Kemudian saya membuat berkas baru bernama `item_detail.dart` di dalam direktori `lib/screens` yang akan menampilkan halaman detail dari setiap item. Kode dalam berkas tersebut dapat diakses di link berikut: [item_detail.dart](./lib/screens/item_detail.dart)
 </details>
 
 <details>
 <summary><b>Melakukan filter pada halaman daftar item dengan hanya menampilkan item yang terasosiasi dengan pengguna yang login</b></summary>
+
+14. Item yang ditampilkan pada halaman hanyalah item yang terasosiasi oleh pengguna yang login dengan menggunakan CookieRequest. 
+    ```dart
+    Future<List<Item>> fetchItem(CookieRequest request) async {
+        final response = await request.get('http://localhost:8000/json/');
+        ...
+    }
+    ```
 </details>
 
 ### Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+Membuat model diperlukan untuk mengelola data JSON karena memudahkan validasi, parsing, dan manipulasi data secara terstruktur, serta meminimalisir kesalahan saat data diolah dalam aplikasi. Tanpa model, aplikasi tidak pasti langsung error, tetapi bisa lebih mudah salah saat beroperasi (runtime error), seperti salah tipe data atau key errors, karena kurangnya validasi dan data yang masuk tidak terstruktur dengan baik.
 
 ### Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+Library `http` di Django membantu mengelola request dan response HTTP dalam aplikasi web. Untuk tugas ini, saya menggunakan `JsonResponse`, yang memudahkan pengiriman respons dalam format JSON dan sangat berguna untuk API yang berkomunikasi dengan aplikasi frontend atau layanan lain menggunakan JSON.
 
 ### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+Di aplikasi Flutter, `CookieRequest` digunakan untuk mengelola cookie, seperti menyimpan dan mengaksesnya. Instance `CookieRequest` perlu dibagikan ke semua komponen di aplikasi flutter agar pengaturan dan sesi pengguna tetap konsisten di mana pun mereka berada dalam aplikasi, sehingga kestabilan sesi pengguna dapat terjaga. 
 
 ### Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+Dalam aplikasi Flutter, proses mengambil data dimulai dengan mengambil JSON dari endpoint JSON pada web page menggunakan parse URL, kemudian melakukan permintaan GET melalui package http. Data JSON tersebut kemudian dikonversi ke dalam objek Dart, seperti `Item`. Lalu, objek ini digunakan untuk memperbarui UI, dengan setiap atribut dari `Item` ditampilkan melalui `FutureBuilder`, yang secara asinkron menunggu hingga proses pengambilan data selesai sebelum memperbarui tampilan.
 
 ### Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+Pertama, aplikasi Flutter mengirimkan username dan password ke sebuah endpoint khusus di Django melalui permintaan POST. Di Django, sistem mencoba untuk memverifikasi informasi ini. Jika login tidak berhasil, pengguna mendapat balasan dengan kode kesalahan 401. Namun, jika informasi tersebut benar dan login berhasil, Django mengirimkan kembali respons sukses dengan kode 200, menyertakan username yang telah login, dan secara otomatis mengarahkan pengguna ke halaman utama aplikasi.

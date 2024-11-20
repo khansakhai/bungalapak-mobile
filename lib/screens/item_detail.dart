@@ -30,7 +30,7 @@ class ItemDetailPage extends StatelessWidget {
                 item.fields.name,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
-                  fontSize: 32.0,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -38,7 +38,7 @@ class ItemDetailPage extends StatelessWidget {
                 "Price: ${item.fields.price}",
                 textAlign: TextAlign.start,
                 style: const TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 20.0,
                 ),
               ),
               Padding(
@@ -47,7 +47,7 @@ class ItemDetailPage extends StatelessWidget {
                   item.fields.description,
                   textAlign: TextAlign.start,
                   style: const TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 20.0,
                   ),
                 ),
               ),
